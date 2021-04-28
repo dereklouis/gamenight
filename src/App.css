@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
-}
+/* font-family: 'Lobster', cursive;
+font-family: 'Press Start 2P', cursive;
+font-family: 'Quicksand', sans-serif; */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+#App {
+  background-color: #d4f1f5;
+  width: 100vw;
+  max-width: 100%;
   min-height: 100vh;
+  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+hr {
+  width: 95%;
+  color: black;
+  border: 1px solid black;
+}
+
+button {
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition-duration: 1s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 100%;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 100%;
   }
+  100% {
+    opacity: 0%;
+  }
+}
+
+#title {
+  font-family: 'Press Start 2P', cursive;
+  margin: 50px 0px 15px 0px;
+  font-size: 42px;
+  animation-name: blink;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+#tag {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+#nameForm {
+  margin: 50px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#enterUserName {
+  border-radius: 15px;
+  border: none;
+  padding: 10px 25px;
+  margin: 0px 0px 36px 0px;
+  text-align: center;
+  outline: none;
+}
+
+#nameSubmit {
+  background-color: #f4d35e;
+}
+
+#nameSubmit:hover {
+  background-color: #f4c006;
+  transform: scale(1.05);
+}
+
+#hello {
+  margin: 40px 0px 10px 0px;
+  font-size: 26px;
+}
+
+#attending {
+  font-size: 19px;
+}
+
+#yesno {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0px 0px 0px;
+}
+
+#yes {
+  background-color: rgb(189, 232, 158);
+}
+
+#yes:hover {
+  background-color: rgb(141, 218, 86);
+  transform: scale(1.05);
+}
+
+#no {
+  background-color: rgb(235, 176, 176);
+}
+
+#no:hover {
+  background-color: rgb(221, 100, 100);
+  transform: scale(1.05);
+}
+
+#zoomDiv {
+  margin: 0px 0px 20px 0px;
+}
+
+#zoom {
+  margin: 15px 10px 15px 0px;
+  font-size: 22px;
+}
+
+#link {
+  font-size: 20px;
+  color: blue;
+  text-align: center;
+}
+
+#instruction {
+  font-size: 22px;
+  font-weight: 450;
+  margin: 22px 0px 11px 0px;
+}
+
+#voteCount {
+  margin: 16px 0px 25px 0px;
+}
+
+#gameVote {
+  background-color: rgba(181, 181, 181, 0.138);
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 15px;
+  margin: 0px 0px 36px 0px;
+}
+
+.gameImg {
+  height: 125px;
+  width: 125px;
+}
+
+.singleGameDiv {
+  background-color: rgba(184, 184, 184, 0.446);
+  padding: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.singleGameDiv:hover {
+  transform: scale(1.05);
+}
+
+.gameTitle {
+  margin: 0px 0px 10px 0px;
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.votes {
+  margin: 0px 0px 5px 0px;
 }
