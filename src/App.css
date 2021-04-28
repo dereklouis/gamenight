@@ -184,3 +184,20 @@ button {
 .votes {
   margin: 0px 0px 5px 0px;
 }
+
+@keyframes emphasize {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.emphasize {
+  animation-name: emphasize;
+  animation-duration: 0.2s;
+}

@@ -39,7 +39,21 @@ router.put('/attending/:userName', async (req, res, next) => {
 router.put('/vote/:userName', async (req, res, next) => {
   try {
     const user = await getUser(req.params.userName);
-    res.send('voted for route hit');
+    const instance = await user.dataValues;
+    const prevArr = instance.votedFor;
+    const prevVoteCount = instance.votesRemaining;
+    if (req.body.vote === '+') {
+      await user.update({
+        votedFor: [...prevArr, req.body.game],
+        votesRemaining: prevVoteCount - 1,
+      });
+    } else if (req.body.vote === '-') {
+      await user.update({
+        votedFor: prevArr.filter((game) => game !== req.body.game),
+        votesRemaining: prevVoteCount + 1,
+      });
+    }
+    res.json(user.dataValues.votedFor);
   } catch (error) {
     next(error);
   }

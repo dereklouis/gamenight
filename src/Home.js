@@ -6,12 +6,16 @@ const Home = () => {
 
   const [gameData, updateGameData] = useState(['initial state']);
 
+  const [votedGames, voteForAGame] = useState([]);
+
+  const [votesRemaining, updateVoteCount] = useState(3);
+
   useEffect(() => {
     if (gameData[0] === 'initial state') {
       console.log('Home useEffect triggered!');
       const loadGameData = async () => {
-        const data = await axios.get('/api/games');
-        const sortedData = data.data.sort(function (a, b) {
+        const gameData = await axios.get('/api/games');
+        const sortedData = gameData.data.sort(function (a, b) {
           var nameA = a.name.toLowerCase(),
             nameB = b.name.toLowerCase();
           if (nameA < nameB) return -1;
@@ -19,20 +23,27 @@ const Home = () => {
           return 0;
         });
         updateGameData(sortedData);
+        const userData = await axios.get(`/api/users/${userNameLS}`);
+        voteForAGame(userData.data.votedFor);
+        updateVoteCount(userData.data.votesRemaining);
       };
       loadGameData();
     }
   }, []);
 
-  const [votedGames, voteForAGame] = useState([]);
-
-  const [votesRemaining, updateVoteCount] = useState(3);
-
   const handleVote = async (e) => {
     if (votedGames.includes(e.currentTarget.id)) {
-      voteForAGame(votedGames.filter((game) => game !== e.currentTarget.id));
+      let gameName = e.currentTarget.id;
+      const votedGamesFromDB = await axios.put(
+        `/api/users/vote/${userNameLS}`,
+        {
+          vote: '-',
+          game: gameName,
+        }
+      );
+      voteForAGame(votedGamesFromDB.data);
       updateVoteCount(votesRemaining + 1);
-      const gameData = await axios.put(`/api/games/${e.currentTarget.id}`, {
+      const gameData = await axios.put(`/api/games/${gameName}`, {
         vote: '-',
       });
       const sortedGameData = gameData.data.sort(function (a, b) {
@@ -44,15 +55,17 @@ const Home = () => {
       });
       updateGameData(sortedGameData);
     } else if (votesRemaining > 0 && !votedGames.includes(e.currentTarget.id)) {
-      //   voteForAGame([...votedGames, e.currentTarget.id]);
-      ////////////////////////////////////////////////////
-      const votedGames = await axios.put(`/api/users/vote/${userNameLS}`, {
-        vote: '+',
-        game: e.currentTarget.id,
-      });
-      ///////////////////////////////////////////////////
+      let gameName = e.currentTarget.id;
+      const votedGamesFromDB = await axios.put(
+        `/api/users/vote/${userNameLS}`,
+        {
+          vote: '+',
+          game: gameName,
+        }
+      );
+      voteForAGame(votedGamesFromDB.data);
       updateVoteCount(votesRemaining - 1);
-      const gameData = await axios.put(`/api/games/${e.currentTarget.id}`, {
+      const gameData = await axios.put(`/api/games/${gameName}`, {
         vote: '+',
       });
       const sortedGameData = gameData.data.sort(function (a, b) {
@@ -63,6 +76,14 @@ const Home = () => {
         return 0;
       });
       updateGameData(sortedGameData);
+    } else if (
+      votesRemaining <= 0 &&
+      !votedGames.includes(e.currentTarget.id)
+    ) {
+      const voteDisplay = document.getElementById('voteCount');
+      voteDisplay.className = '';
+      void voteDisplay.offsetWidth;
+      voteDisplay.className = 'emphasize';
     }
   };
   console.log('gameData State--->', gameData);
