@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Home = () => {
+  const userNameLS = localStorage.getItem('userNameLS');
+
   const [gameData, updateGameData] = useState(['initial state']);
 
   useEffect(() => {
@@ -42,7 +44,13 @@ const Home = () => {
       });
       updateGameData(sortedGameData);
     } else if (votesRemaining > 0 && !votedGames.includes(e.currentTarget.id)) {
-      voteForAGame([...votedGames, e.currentTarget.id]);
+      //   voteForAGame([...votedGames, e.currentTarget.id]);
+      ////////////////////////////////////////////////////
+      const votedGames = await axios.put(`/api/users/vote/${userNameLS}`, {
+        vote: '+',
+        game: e.currentTarget.id,
+      });
+      ///////////////////////////////////////////////////
       updateVoteCount(votesRemaining - 1);
       const gameData = await axios.put(`/api/games/${e.currentTarget.id}`, {
         vote: '+',

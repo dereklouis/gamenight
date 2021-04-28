@@ -15,6 +15,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'n/a',
   },
+  votedFor: Sequelize.ARRAY(Sequelize.TEXT),
 });
 
 module.exports = User;

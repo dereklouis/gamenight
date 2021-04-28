@@ -2,6 +2,15 @@ const router = require('express').Router();
 const { User } = require('../db/models');
 module.exports = router;
 
+const getUser = async (reqName) => {
+  const user = await User.findOne({
+    where: {
+      name: reqName,
+    },
+  });
+  return user;
+};
+
 //get all users
 router.get('/', async (req, res, next) => {
   try {
@@ -15,11 +24,7 @@ router.get('/', async (req, res, next) => {
 //update attending status for user
 router.put('/attending/:userName', async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: {
-        name: req.params.userName,
-      },
-    });
+    const user = await getUser(req.params.userName);
     console.log('user instance--->', user);
     await user.update({
       attending: req.body.answer,
@@ -30,15 +35,21 @@ router.put('/attending/:userName', async (req, res, next) => {
   }
 });
 
+//update user voted for
+router.put('/vote/:userName', async (req, res, next) => {
+  try {
+    const user = await getUser(req.params.userName);
+    res.send('voted for route hit');
+  } catch (error) {
+    next(error);
+  }
+});
+
 //get single user
 router.get('/:userName', async (req, res, next) => {
   try {
-    const userFromDb = await User.findOne({
-      where: {
-        name: req.params.userName,
-      },
-    });
-    res.json(userFromDb);
+    const user = await getUser(req.params.userName);
+    res.json(user);
   } catch (error) {
     next(error);
   }
