@@ -18,11 +18,9 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('use effect fired!');
     if (userNameLS) {
       const mountFromDb = async () => {
         const data = await getUserFromDb();
-        console.log('User Data from DB--->', data);
         if (attending !== data.attending) {
           updateAttending(data.attending);
         }

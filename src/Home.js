@@ -10,22 +10,39 @@ const Home = () => {
 
   const [votesRemaining, updateVoteCount] = useState(3);
 
+  const [usersAttending, updateUsersAttending] = useState([]);
+
+  const [gameKeys, updateGameKeys] = useState({});
+
   useEffect(() => {
     if (gameData[0] === 'initial state') {
       console.log('Home useEffect triggered!');
       const loadGameData = async () => {
         const gameData = await axios.get('/api/games');
         const sortedData = gameData.data.sort(function (a, b) {
-          var nameA = a.name.toLowerCase(),
+          let nameA = a.name.toLowerCase(),
             nameB = b.name.toLowerCase();
           if (nameA < nameB) return -1;
           if (nameA > nameB) return 1;
           return 0;
         });
         updateGameData(sortedData);
-        const userData = await axios.get(`/api/users/${userNameLS}`);
-        voteForAGame(userData.data.votedFor);
-        updateVoteCount(userData.data.votesRemaining);
+        const allUsers = await axios.get('/api/users');
+        const sortedAttendingUsers = allUsers.data.sort(function (a, b) {
+          let nameA = a.name.toLowerCase(),
+            nameB = b.name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+        updateUsersAttending(sortedAttendingUsers);
+        const currentUser = allUsers.data.filter(
+          (user) => user.name === userNameLS
+        )[0];
+        voteForAGame(currentUser.votedFor);
+        updateVoteCount(currentUser.votesRemaining);
+        const gameKeysFromDb = await axios.get('/api/keys');
+        updateGameKeys(gameKeysFromDb.data);
       };
       loadGameData();
     }
@@ -47,7 +64,7 @@ const Home = () => {
         vote: '-',
       });
       const sortedGameData = gameData.data.sort(function (a, b) {
-        var nameA = a.name.toLowerCase(),
+        let nameA = a.name.toLowerCase(),
           nameB = b.name.toLowerCase();
         if (nameA < nameB) return -1;
         if (nameA > nameB) return 1;
@@ -69,7 +86,7 @@ const Home = () => {
         vote: '+',
       });
       const sortedGameData = gameData.data.sort(function (a, b) {
-        var nameA = a.name.toLowerCase(),
+        let nameA = a.name.toLowerCase(),
           nameB = b.name.toLowerCase();
         if (nameA < nameB) return -1;
         if (nameA > nameB) return 1;
@@ -86,13 +103,13 @@ const Home = () => {
       voteDisplay.className = 'emphasize';
     }
   };
-  console.log('gameData State--->', gameData);
+  console.log('Component Rendered');
   return (
     <>
       <div id="zoomDiv" className="flexColumn">
         <p id="zoom">Zoom Link:</p>
-        <a target="blank" href="https://zoom.us/" id="link">
-          https://us02web.zoom.us/j/86285028379?pwd=aURVY2tRUUd3WnZRS3ltTWtlWFhNZz09
+        <a target="blank" href={gameKeys.link || 'https://zoom.us/'} id="link">
+          {gameKeys.link || 'loading...'}
         </a>
       </div>
       <h3 id="instruction">Vote for what game you want to play!</h3>
@@ -123,6 +140,14 @@ const Home = () => {
               />
             </div>
           ))}
+      </div>
+      <div id="attendanceList" className="flexColumn">
+        <h2>{usersAttending.length} Players Tonight:</h2>
+        {usersAttending.map((user) => (
+          <div id="nameContainer" key={user.name}>
+            <p id="listName">{user.name}</p>
+          </div>
+        ))}
       </div>
     </>
   );

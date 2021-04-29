@@ -131,7 +131,7 @@ button {
 }
 
 #link {
-  font-size: 20px;
+  font-size: 18px;
   color: blue;
   text-align: center;
 }
@@ -161,6 +161,7 @@ button {
 .gameImg {
   height: 125px;
   width: 125px;
+  border-radius: 5px;
 }
 
 .singleGameDiv {
@@ -200,4 +201,32 @@ button {
 .emphasize {
   animation-name: emphasize;
   animation-duration: 0.2s;
+}
+
+#attendanceList {
+  background-color: rgba(181, 181, 181, 0.138);
+  border-radius: 15px;
+  width: 40vw;
+  margin: 0px 0px 36px 0px;
+  padding: 15px 0px 25px 0px;
+}
+
+#nameContainer {
+  margin: 15px 0px;
+  border: 2px solid orange;
+  background-color: rgba(255, 255, 255, 0.748);
+  width: 150px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+#listName {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0px;
 }
