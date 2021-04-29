@@ -72,7 +72,7 @@ function App() {
           {attending === 'no' && <h3>See you next time!</h3>}
           {attending === 'yes' && !gameStatus && (
             <div id="waitingDiv">
-              <h2 id="waitingLabel">Waiting for hoset to open the room</h2>
+              <h2 id="waitingLabel">Waiting for host to open the room</h2>
               <div className="dot-flashing"></div>
             </div>
           )}

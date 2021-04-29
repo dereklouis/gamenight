@@ -14,39 +14,45 @@ const Home = () => {
 
   const [gameKeys, updateGameKeys] = useState({});
 
+  const loadGameData = async () => {
+    const gameData = await axios.get('/api/games');
+    const sortedData = gameData.data.sort(function (a, b) {
+      let nameA = a.name.toLowerCase(),
+        nameB = b.name.toLowerCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
+    updateGameData(sortedData);
+    const allUsers = await axios.get('/api/users');
+    const sortedAttendingUsers = allUsers.data
+      .filter((user) => user.attending === 'yes')
+      .sort(function (a, b) {
+        let nameA = a.name.toLowerCase(),
+          nameB = b.name.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+    updateUsersAttending(sortedAttendingUsers);
+    const currentUser = allUsers.data.filter(
+      (user) => user.name === userNameLS
+    )[0];
+    voteForAGame(currentUser.votedFor);
+    updateVoteCount(currentUser.votesRemaining);
+    const gameKeysFromDb = await axios.get('/api/keys');
+    updateGameKeys(gameKeysFromDb.data);
+  };
+
   useEffect(() => {
-    if (gameData[0] === 'initial state') {
-      console.log('Home useEffect triggered!');
-      const loadGameData = async () => {
-        const gameData = await axios.get('/api/games');
-        const sortedData = gameData.data.sort(function (a, b) {
-          let nameA = a.name.toLowerCase(),
-            nameB = b.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        });
-        updateGameData(sortedData);
-        const allUsers = await axios.get('/api/users');
-        const sortedAttendingUsers = allUsers.data.sort(function (a, b) {
-          let nameA = a.name.toLowerCase(),
-            nameB = b.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        });
-        updateUsersAttending(sortedAttendingUsers);
-        const currentUser = allUsers.data.filter(
-          (user) => user.name === userNameLS
-        )[0];
-        voteForAGame(currentUser.votedFor);
-        updateVoteCount(currentUser.votesRemaining);
-        const gameKeysFromDb = await axios.get('/api/keys');
-        updateGameKeys(gameKeysFromDb.data);
-      };
-      loadGameData();
-    }
+    console.log('Home useEffect triggered!');
+    loadGameData();
   }, []);
+
+  //   setInterval(() => {
+  //     console.log('interval ran');
+  //     loadGameData();
+  //   }, 10000);
 
   const handleVote = async (e) => {
     if (votedGames.includes(e.currentTarget.id)) {
