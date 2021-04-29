@@ -4,11 +4,16 @@ import axios from 'axios';
 import Welcome from './Welcome';
 import Attending from './Attending';
 import Home from './Home';
+import AdminAccessPanel from './AdminAccessPanel';
 
 function App() {
   const userNameLS = localStorage.getItem('userNameLS');
 
   const [attending, updateAttending] = useState('n/a');
+
+  const [gameStatus, updateGameStatus] = useState(false);
+
+  const [adminAccess, updateAdminAccess] = useState(false);
 
   const getUserFromDb = async () => {
     if (userNameLS) {
@@ -21,16 +26,35 @@ function App() {
     if (userNameLS) {
       const mountFromDb = async () => {
         const data = await getUserFromDb();
-        if (attending !== data.attending) {
-          updateAttending(data.attending);
-        }
+        updateAttending(data.attending);
+        const keysFromDb = await axios.get('/api/keys');
+        updateGameStatus(keysFromDb.data.gameActive);
       };
       mountFromDb();
     }
   }, []);
 
+  let keyListenerObj = {
+    Control: false,
+    g: false,
+    n: false,
+  };
+
+  const keyListener = (e) => {
+    const targets = ['Control', 'g', 'n'];
+    if (targets.includes(e.key) && e.type === 'keydown') {
+      keyListenerObj[e.key] = true;
+    } else if (targets.includes(e.key) && e.type === 'keyup') {
+      keyListenerObj[e.key] = false;
+    }
+    const status = Object.values(keyListenerObj);
+    if (!status.includes(false)) {
+      updateAdminAccess(!adminAccess);
+    }
+  };
+
   return (
-    <div id="App">
+    <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>
       <h1 id="title">Game Night</h1>
       <h2 id="tag">Monday Nights, 7:30 EST</h2>
       <hr />
@@ -46,10 +70,24 @@ function App() {
             />
           )}
           {attending === 'no' && <h3>See you next time!</h3>}
-          {attending === 'yes' && <Home getUserFromDb={getUserFromDb} />}
+          {attending === 'yes' && !gameStatus && (
+            <div id="waitingDiv">
+              <h2 id="waitingLabel">Waiting for hoset to open the room</h2>
+              <div className="dot-flashing"></div>
+            </div>
+          )}
+          {attending === 'yes' && gameStatus && (
+            <Home getUserFromDb={getUserFromDb} />
+          )}
         </div>
       ) : (
         <Welcome />
+      )}
+      {adminAccess && (
+        <AdminAccessPanel
+          updateGameStatus={updateGameStatus}
+          updateAttending={updateAttending}
+        />
       )}
     </div>
   );

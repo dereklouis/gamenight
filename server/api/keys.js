@@ -11,3 +11,55 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.put('/zoomlink', async (req, res, next) => {
+  try {
+    const keys = await Key.findByPk(1);
+    keys.update({
+      link: req.body.link,
+    });
+    res.sendStatus(202);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put('/roomcode', async (req, res, next) => {
+  try {
+    const keys = await Key.findByPk(1);
+    keys.update({
+      roomCode: req.body.roomCode,
+    });
+    res.sendStatus(202);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put('/gamestatus', async (req, res, next) => {
+  try {
+    const keys = await Key.findByPk(1);
+    let prevStatus = keys.dataValues.gameActive;
+    keys.update({
+      gameActive: !prevStatus,
+    });
+    res.json(!prevStatus);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch('/reset', async (req, res, next) => {
+  try {
+    const keys = await Key.findByPk(1);
+    await keys.update({
+      link:
+        'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
+      roomCode: null,
+      gameActive: false,
+    });
+    res.sendStatus(202);
+  } catch (error) {
+    next(error);
+  }
+});

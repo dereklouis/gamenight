@@ -84,3 +84,21 @@ router.put('/', async (req, res, next) => {
     next(error);
   }
 });
+
+//reset
+router.patch('/reset', async (req, res, next) => {
+  try {
+    const allUsers = await User.findAll();
+    console.log('allUsers--->', allUsers);
+    await allUsers.forEach((user) =>
+      user.update({
+        attending: 'n/a',
+        votesRemaining: 3,
+        votedFor: [],
+      })
+    );
+    res.sendStatus(202);
+  } catch (error) {
+    console.error(error);
+  }
+});

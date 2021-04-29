@@ -230,3 +230,130 @@ button {
   font-weight: 500;
   margin: 0px;
 }
+
+#waitingDiv {
+  margin: 150px 0px 0px 0px;
+  display: flex;
+  align-items: flex-end;
+}
+
+#waitingLabel {
+  font-weight: 400;
+  margin: 0px 25px 0px 0px;
+}
+
+.dot-flashing {
+  position: relative;
+  width: 4px;
+  height: 4px;
+  margin: 0px 0px 5px 0px;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #000000;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  height: 4px;
+  width: 4px;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #000000;
+  animation: dotFlashing 1s infinite alternate;
+}
+
+.dot-flashing::before {
+  left: -13px;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 13px;
+  animation-delay: 1s;
+}
+
+@keyframes dotFlashing {
+  0% {
+    background-color: #000000;
+  }
+  50%,
+  100% {
+    background-color: #00000000;
+  }
+}
+
+#aAPContainer {
+  margin: 50px 0px 36px 0px;
+  background-color: rgba(130, 130, 130, 0.227);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.panelRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0px 36px 0px;
+}
+
+.panelInput {
+  border-radius: 15px;
+  border: none;
+  padding: 10px 25px;
+  margin: 0px 15px 0px 0px;
+  text-align: center;
+  outline: none;
+}
+
+#sendLink {
+  background-color: #67abff;
+}
+
+#sendLink:hover {
+  transform: scale(1.05);
+  background-color: #2d8cff;
+}
+
+#sendCode {
+  background-color: rgb(218, 174, 244);
+}
+
+#sendCode:hover {
+  transform: scale(1.05);
+  background-color: rgb(189, 127, 225);
+}
+
+.openRoom {
+  background-color: rgb(189, 232, 158);
+}
+
+.openRoom:hover {
+  transform: scale(1.05);
+  background-color: rgb(141, 218, 86);
+}
+
+.closeRoom {
+  background-color: rgb(235, 176, 176);
+}
+
+.closeRoom:hover {
+  transform: scale(1.05);
+  background-color: rgb(221, 100, 100);
+}
+
+#reset {
+  background-color: red;
+  color: white;
+  letter-spacing: 3px;
+}
+
+#reset:hover {
+  background-color: rgb(143, 0, 0);
+  transform: scale(1.05);
+}
