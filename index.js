@@ -6,18 +6,18 @@ const db = require('./server/db');
 const PORT = process.env.PORT || 8080;
 const app = express();
 // const { User, Game } = require('./server/db/models');
-require('dotenv').config();
+// require('dotenv').config();
 module.exports = app;
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./server/api'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/public')));
 
 app.use((req, res, next) => {
   if (path.extname(req.path).length) {
-    const err = new Error('Not foundxxx');
+    const err = new Error('Not found');
     err.status = 404;
     next(err);
   } else {
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
 });
 
 app.use((err, req, res, next) => {

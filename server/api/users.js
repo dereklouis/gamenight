@@ -25,7 +25,6 @@ router.get('/', async (req, res, next) => {
 router.put('/attending/:userName', async (req, res, next) => {
   try {
     const user = await getUser(req.params.userName);
-    console.log('user instance--->', user);
     await user.update({
       attending: req.body.answer,
     });
@@ -78,7 +77,6 @@ router.put('/', async (req, res, next) => {
         name: userName,
       },
     });
-    console.log(222, user);
     res.send(`${userName} is in the database!`);
   } catch (error) {
     next(error);
@@ -89,7 +87,6 @@ router.put('/', async (req, res, next) => {
 router.patch('/reset', async (req, res, next) => {
   try {
     const allUsers = await User.findAll();
-    console.log('allUsers--->', allUsers);
     await allUsers.forEach((user) =>
       user.update({
         attending: 'n/a',
