@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AdminAccessPanel = (props) => {
-  console.log('panel rendered');
-
   const [gameKeys, updateGameKeys] = useState({});
 
   useEffect(() => {
@@ -56,6 +54,8 @@ const AdminAccessPanel = (props) => {
       clearInterval(window.fetchGameData);
       window.fetchGameData = undefined;
     }
+    const fetchKeys = await axios.get('/api/keys');
+    updateGameKeys(fetchKeys.data);
     console.log('Game Night has been reset!');
   };
 
