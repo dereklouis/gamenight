@@ -15,7 +15,7 @@ function App() {
 
   const [adminAccess, updateAdminAccess] = useState(false);
 
-  if (attending === 'n/a' && !gameStatus && window.fetchGameData) {
+  if (!gameStatus && window.fetchGameData) {
     clearInterval(window.fetchGameData);
     window.fetchGameData = undefined;
   }
@@ -92,6 +92,8 @@ function App() {
           console.log('Checking to see if room has closed...');
           if (!currentStatus && data.attending === 'n/a') {
             updateAttending(data.attending);
+            updateGameStatus(currentStatus);
+          } else if (!currentStatus) {
             updateGameStatus(currentStatus);
           }
         }, 30000);
