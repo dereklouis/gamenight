@@ -53,6 +53,57 @@ function App() {
     }
   };
 
+  const checkForStatusTrue = async () => {
+    if (
+      attending === 'yes' &&
+      !gameStatus &&
+      window.checkForRoomOpen === undefined
+    ) {
+      window.checkForRoomOpen = setInterval(async () => {
+        const fetch = await axios.get('/api/keys');
+        const currentStatus = fetch.data.gameActive;
+        console.log('Checking to see if room has opened...');
+        if (currentStatus) {
+          updateGameStatus(currentStatus);
+        }
+      }, 5000);
+    } else if (attending === 'yes' && gameStatus && window.checkForRoomOpen) {
+      clearInterval(window.checkForRoomOpen);
+      window.checkForRoomOpen = undefined;
+    }
+  };
+
+  const checkIfGameHasEnded = async () => {
+    if (userNameLS) {
+      if (
+        attending === 'yes' &&
+        gameStatus &&
+        window.checkForRoomClose === undefined
+      ) {
+        window.checkForRoomClose = setInterval(async () => {
+          const fetch = await axios.get('/api/keys');
+          const data = await getUserFromDb();
+          const currentStatus = fetch.data.gameActive;
+          console.log('Checking to see if room has closed...');
+          if (!currentStatus && data.attending === 'n/a') {
+            updateAttending(data.attending);
+            updateGameStatus(currentStatus);
+          }
+        }, 10000);
+      } else if (
+        attending === 'n/a' &&
+        !gameStatus &&
+        window.checkForRoomClose
+      ) {
+        clearInterval(window.checkForRoomClose);
+        window.checkForRoomClose = undefined;
+      }
+    }
+  };
+
+  checkForStatusTrue();
+  checkIfGameHasEnded();
+
   return (
     <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>
       <h1 id="title">Game Night</h1>
@@ -77,7 +128,9 @@ function App() {
             </div>
           )}
           {attending === 'yes' && gameStatus && (
-            <Home getUserFromDb={getUserFromDb} />
+            <>
+              <Home getUserFromDb={getUserFromDb} />
+            </>
           )}
         </div>
       ) : (
