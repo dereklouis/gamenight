@@ -45,14 +45,14 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log('Home useEffect triggered!');
     loadGameData();
+    if (window.fetchGameData === undefined) {
+      window.fetchGameData = setInterval(() => {
+        console.log('Fetching game data...');
+        loadGameData();
+      }, 7000);
+    }
   }, []);
-
-  //   setInterval(() => {
-  //     console.log('interval ran');
-  //     loadGameData();
-  //   }, 10000);
 
   const handleVote = async (e) => {
     if (votedGames.includes(e.currentTarget.id)) {
@@ -109,15 +109,27 @@ const Home = () => {
       voteDisplay.className = 'emphasize';
     }
   };
-  console.log('Component Rendered');
+
   return (
     <>
       <div id="zoomDiv" className="flexColumn">
-        <p id="zoom">Zoom Link:</p>
-        <a target="blank" href={gameKeys.link || 'https://zoom.us/'} id="link">
-          {gameKeys.link || 'loading...'}
-        </a>
+        <div className="flexColumn">
+          <p id="zoom">Zoom Link:</p>
+          <a
+            target="blank"
+            href={gameKeys.link || 'https://zoom.us/'}
+            id="link"
+          >
+            {gameKeys.link || 'loading...'}
+          </a>
+        </div>
       </div>
+      {gameKeys.roomCode && (
+        <div className="flexColumn">
+          <p id="roomCodeTitle">Room Code:</p>
+          <p id="roomCode">{gameKeys.roomCode}</p>
+        </div>
+      )}
       <h3 id="instruction">Vote for what game you want to play!</h3>
       <p id="voteCount">
         You have <span style={{ fontWeight: 'bold' }}>{votesRemaining}</span>{' '}

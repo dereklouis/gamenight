@@ -15,6 +15,11 @@ function App() {
 
   const [adminAccess, updateAdminAccess] = useState(false);
 
+  if (attending === 'n/a' && !gameStatus && window.fetchGameData) {
+    clearInterval(window.fetchGameData);
+    window.fetchGameData = undefined;
+  }
+
   const getUserFromDb = async () => {
     if (userNameLS) {
       const user = await axios.get(`/api/users/${userNameLS}`);
@@ -89,7 +94,7 @@ function App() {
             updateAttending(data.attending);
             updateGameStatus(currentStatus);
           }
-        }, 10000);
+        }, 30000);
       } else if (
         attending === 'n/a' &&
         !gameStatus &&

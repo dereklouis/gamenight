@@ -44,6 +44,18 @@ const AdminAccessPanel = (props) => {
     await axios.patch('/api/keys/reset');
     props.updateGameStatus(false);
     props.updateAttending('n/a');
+    if (window.checkForRoomOpen !== undefined) {
+      clearInterval(window.checkForRoomOpen);
+      window.checkForRoomOpen = undefined;
+    }
+    if (window.checkForRoomClose !== undefined) {
+      clearInterval(window.checkForRoomClose);
+      window.checkForRoomClose = undefined;
+    }
+    if (window.fetchGameData !== undefined) {
+      clearInterval(window.fetchGameData);
+      window.fetchGameData = undefined;
+    }
     console.log('Game Night has been reset!');
   };
 

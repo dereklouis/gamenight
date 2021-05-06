@@ -126,7 +126,7 @@ button {
 }
 
 #zoom {
-  margin: 15px 10px 15px 0px;
+  margin: 15px 0px 15px 0px;
   font-size: 22px;
 }
 
@@ -356,4 +356,12 @@ button {
 #reset:hover {
   background-color: rgb(143, 0, 0);
   transform: scale(1.05);
+}
+
+#roomCodeTitle {
+  font-size: 20px;
+}
+
+#roomCode {
+  margin: 0px;
 }
