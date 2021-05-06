@@ -142,8 +142,8 @@ const Home = () => {
               className="singleGameDiv flexColumn"
               style={{
                 backgroundColor: votedGames.includes(game.path)
-                  ? 'rgb(141, 218, 86)'
-                  : 'rgba(184, 184, 184, 0.446)',
+                  ? 'rgba(121, 206, 61, 0.866)'
+                  : 'rgba(245, 245, 245, 0.846)',
               }}
               key={game.path}
               id={game.path}

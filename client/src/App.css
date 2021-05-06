@@ -3,7 +3,6 @@ font-family: 'Press Start 2P', cursive;
 font-family: 'Quicksand', sans-serif; */
 
 #App {
-  background-color: #d4f1f5;
   width: 100vw;
   max-width: 100%;
   min-height: 100vh;
@@ -54,12 +53,14 @@ button {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
+  color: black;
 }
 
 #tag {
   font-family: 'Quicksand', sans-serif;
   font-weight: 300;
   font-size: 20px;
+  color: black;
 }
 
 #nameForm {
@@ -132,7 +133,7 @@ button {
 
 #link {
   font-size: 18px;
-  color: blue;
+  color: rgb(73, 167, 255);
   text-align: center;
 }
 
@@ -147,7 +148,7 @@ button {
 }
 
 #gameVote {
-  background-color: rgba(181, 181, 181, 0.138);
+  background-color: rgba(106, 106, 106, 0.166);
   width: 80vw;
   display: flex;
   flex-wrap: wrap;
@@ -165,7 +166,6 @@ button {
 }
 
 .singleGameDiv {
-  background-color: rgba(184, 184, 184, 0.446);
   padding: 15px;
   border-radius: 15px;
   cursor: pointer;
@@ -204,7 +204,7 @@ button {
 }
 
 #attendanceList {
-  background-color: rgba(181, 181, 181, 0.138);
+  background-color: rgba(181, 181, 181, 0.296);
   border-radius: 15px;
   width: 40vw;
   margin: 0px 0px 36px 0px;
@@ -213,8 +213,8 @@ button {
 
 #nameContainer {
   margin: 15px 0px;
-  border: 2px solid orange;
-  background-color: rgba(255, 255, 255, 0.748);
+  border: 3px solid orange;
+  background-color: rgba(255, 255, 255, 0.96);
   width: 150px;
   height: 50px;
   display: flex;
@@ -226,9 +226,10 @@ button {
 
 #listName {
   font-family: 'Quicksand', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
   margin: 0px;
+  color: black;
 }
 
 #waitingDiv {
@@ -248,8 +249,8 @@ button {
   height: 4px;
   margin: 0px 0px 5px 0px;
   border-radius: 5px;
-  background-color: #000000;
-  color: #000000;
+  background-color: #000;
+  color: #000;
   animation: dotFlashing 1s infinite linear alternate;
   animation-delay: 0.5s;
 }
@@ -263,8 +264,8 @@ button {
   height: 4px;
   width: 4px;
   border-radius: 5px;
-  background-color: #000000;
-  color: #000000;
+  background-color: #000;
+  color: #000;
   animation: dotFlashing 1s infinite alternate;
 }
 
@@ -280,17 +281,17 @@ button {
 
 @keyframes dotFlashing {
   0% {
-    background-color: #000000;
+    background-color: #000;
   }
   50%,
   100% {
-    background-color: #00000000;
+    background-color: #0000007e;
   }
 }
 
 #aAPContainer {
   margin: 50px 0px 36px 0px;
-  background-color: rgba(130, 130, 130, 0.227);
+  background-color: rgba(177, 177, 177, 0.337);
   padding: 20px;
   border-radius: 15px;
 }
