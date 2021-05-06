@@ -13,7 +13,9 @@ if (process.env.DATABASE_URL) {
     protocol: 'postgres',
     ssl: true,
     dialectOptions: {
-      ssl: true,
+      ssl: process.env.DATABASE_URL && {
+        require: true,
+      },
     },
   });
 } else {
