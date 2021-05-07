@@ -170,10 +170,17 @@ button {
   border-radius: 15px;
   cursor: pointer;
   transition-duration: 0.5s;
+  width: 125px;
+  /* height: 185px; */
 }
 
 .singleGameDiv:hover {
   transform: scale(1.05);
+}
+
+.gameTitleContainer {
+  width: 100%;
+  text-align: center;
 }
 
 .gameTitle {

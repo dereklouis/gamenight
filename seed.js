@@ -11,6 +11,12 @@ const seedGames = async () => {
     });
     await Game.findOrCreate({
       where: {
+        name: 'Settlers of Catan',
+        path: 'catan',
+      },
+    });
+    await Game.findOrCreate({
+      where: {
         name: 'Blather Round',
         path: 'blatherRound',
       },

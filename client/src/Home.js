@@ -149,7 +149,10 @@ const Home = () => {
               id={game.path}
               onClick={handleVote}
             >
-              <h5 className="gameTitle">{game.name}</h5>
+              <div className="gameTitleContainer">
+                <h5 className="gameTitle">{game.name}</h5>
+              </div>
+
               <p className="votes">Votes: {game.voteCount}</p>
               <img
                 src={`${game.path}.jpg`}
