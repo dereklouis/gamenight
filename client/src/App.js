@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Welcome from './Welcome';
 import Attending from './Attending';
+import WaitingRoom from './WaitingRoom';
 import Home from './Home';
 import AdminAccessPanel from './AdminAccessPanel';
 
@@ -129,10 +130,13 @@ function App() {
           )}
           {attending === 'no' && <h3>See you next time!</h3>}
           {attending === 'yes' && !gameStatus && (
-            <div id="waitingDiv">
-              <h2 id="waitingLabel">Waiting for host to open the room</h2>
-              <div className="dot-flashing"></div>
-            </div>
+            <>
+              <div id="waitingDiv">
+                <h2 id="waitingLabel">Waiting for host to open the room</h2>
+                <div className="dot-flashing"></div>
+              </div>
+              <WaitingRoom />
+            </>
           )}
           {attending === 'yes' && gameStatus && (
             <>
