@@ -155,7 +155,7 @@ const Home = () => {
 
               <p className="votes">Votes: {game.voteCount}</p>
               <img
-                src={`${game.path}.jpg`}
+                src={`/gamePhotos/${game.path}.jpg`}
                 alt={`${game.name} Art`}
                 className="gameImg"
               />
