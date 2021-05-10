@@ -3,11 +3,18 @@
   background-color: rgba(177, 177, 177, 0.337);
   padding: 20px;
   border-radius: 15px;
+  min-width: 200px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#aAPTitle {
+  margin: 22px 0px 40px 0px;
 }
 
 .panelRow {
   display: flex;
   justify-content: center;
+  align-self: flex-start;
   width: 100%;
   margin: 10px 0px 36px 0px;
 }
@@ -23,6 +30,8 @@
 
 .openRoom {
   background-color: rgb(189, 232, 158);
+  width: 75%;
+  border: 2px solid rgb(141, 218, 86);
 }
 
 .openRoom:hover {
@@ -32,6 +41,8 @@
 
 .closeRoom {
   background-color: rgb(235, 176, 176);
+  width: 75%;
+  border: 2px solid rgb(221, 100, 100);
 }
 
 .closeRoom:hover {
@@ -41,8 +52,10 @@
 
 #reset {
   background-color: red;
+  border: 2px solid rgb(143, 0, 0);
   color: white;
   letter-spacing: 3px;
+  width: 75%;
 }
 
 #reset:hover {
@@ -52,6 +65,7 @@
 
 #sendCode {
   background-color: rgb(218, 174, 244);
+  border: 2px solid rgb(189, 127, 225);
 }
 
 #sendCode:hover {
@@ -59,11 +73,41 @@
   background-color: rgb(189, 127, 225);
 }
 
+#roomCodeInput {
+  border: 2px solid rgb(218, 174, 244);
+}
+
 #sendLink {
   background-color: #67abff;
+  border: 2px solid #2d8cff;
 }
 
 #sendLink:hover {
   transform: scale(1.05);
   background-color: #2d8cff;
+}
+
+#zoomLinkInput {
+  border: 2px solid #67abff;
+}
+
+@media (max-width: 500px) {
+  #aAPTitle {
+    font-size: 26px;
+  }
+  .panelRow {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .panelInput {
+    margin: 0px 0px 15px 0px;
+  }
+  #sendCode {
+    padding: 10px 20px;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 400px) {
 }

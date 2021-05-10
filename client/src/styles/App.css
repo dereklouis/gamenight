@@ -26,13 +26,14 @@ font-family: 'Quicksand', sans-serif; */
 
 #title {
   font-family: 'Press Start 2P', cursive;
-  margin: 50px 0px 15px 0px;
+  margin: 50px 25px 15px 25px;
   font-size: 42px;
   animation-name: blink;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
   color: black;
+  text-align: center;
 }
 
 #tag {
@@ -75,7 +76,8 @@ font-family: 'Quicksand', sans-serif; */
 
 #waitingLabel {
   font-weight: 400;
-  margin: 0px 25px 0px 0px;
+  margin: 0px 20px 0px 0px;
+  text-align: center;
 }
 
 .dot-flashing {
@@ -121,5 +123,45 @@ font-family: 'Quicksand', sans-serif; */
   50%,
   100% {
     background-color: #00000023;
+  }
+}
+
+@media (max-width: 590px) {
+  #title {
+    font-size: 32px;
+  }
+  #tag {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 450px) {
+  #title {
+    font-size: 28px;
+  }
+  #tag {
+    font-size: 13px;
+  }
+  #waitingLabel {
+    font-size: 18px;
+  }
+  .dot-flashing {
+    width: 3px;
+    height: 3px;
+  }
+  .dot-flashing::before,
+  .dot-flashing::after {
+    height: 3px;
+    width: 3px;
+  }
+  .dot-flashing::before {
+    left: -10px;
+  }
+
+  .dot-flashing::after {
+    left: 10px;
+  }
+  #waitingLabel {
+    margin: 0px 15px 0px 0px;
   }
 }

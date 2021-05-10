@@ -167,7 +167,7 @@ const Home = () => {
         <h2>{usersAttending.length} Players Tonight:</h2>
         <div id="alignmentWrapper" className="flexColumn">
           {usersAttending.map((user) => (
-            <div className="namePhotoWrapper">
+            <div className="namePhotoWrapper" key={user.name}>
               <img
                 src={`/gameDogs/gameDog${user.photoID}.png`}
                 alt="gameDog"

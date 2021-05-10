@@ -16,9 +16,6 @@ const Attending = (props) => {
         <button id="yes" onClick={() => setAttending('yes')}>
           YES
         </button>
-        <button id="no" onClick={() => setAttending('no')}>
-          NO
-        </button>
       </div>
     </>
   );

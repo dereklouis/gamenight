@@ -1,28 +1,24 @@
 #attending {
   font-size: 19px;
+  text-align: center;
+  margin: 36px 0px 19px 0px;
 }
 
 #yesno {
-  width: 60%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 15px 0px 0px 0px;
 }
 
 #yes {
   background-color: rgb(189, 232, 158);
+  padding: 15px 55px;
+  border: 2px solid rgb(141, 218, 86);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 #yes:hover {
   background-color: rgb(141, 218, 86);
-  transform: scale(1.05);
-}
-
-#no {
-  background-color: rgb(235, 176, 176);
-}
-
-#no:hover {
-  background-color: rgb(221, 100, 100);
   transform: scale(1.05);
 }

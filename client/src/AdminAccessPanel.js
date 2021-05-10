@@ -62,7 +62,7 @@ const AdminAccessPanel = (props) => {
 
   return (
     <div id="aAPContainer" className="flexColumn">
-      <h1 style={{ margin: '22px 0px 40px 0px' }}>Admin Access Panel</h1>
+      <h1 id="aAPTitle">Admin Access Panel</h1>
       <div className="panelRow">
         <input
           type="text"

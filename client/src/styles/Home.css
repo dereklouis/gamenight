@@ -11,6 +11,7 @@
   font-size: 18px;
   color: rgb(73, 167, 255);
   text-align: center;
+  margin: 0px 15px;
 }
 
 #roomCodeTitle {
@@ -24,7 +25,8 @@
 #instruction {
   font-size: 22px;
   font-weight: 450;
-  margin: 22px 0px 11px 0px;
+  margin: 22px 10px 11px 10px;
+  text-align: center;
 }
 
 #voteCount {
@@ -36,11 +38,13 @@
   width: 80vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 25px;
   padding: 25px;
   border-radius: 15px;
   margin: 0px 0px 36px 0px;
+  max-width: 1050px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .singleGameDiv {
@@ -49,7 +53,7 @@
   cursor: pointer;
   transition-duration: 0.5s;
   width: 125px;
-  /* height: 185px; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .singleGameDiv:hover {
@@ -83,6 +87,9 @@
   width: 40vw;
   margin: 0px 0px 36px 0px;
   padding: 15px 0px 25px 0px;
+  min-width: 275px;
+  max-width: 500px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 #alignmentWrapper {
@@ -108,6 +115,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .gameDogPhoto {
@@ -123,4 +131,56 @@
   font-weight: bold;
   margin: 0px;
   color: black;
+}
+
+@media (max-width: 700px) {
+  .nameContainer {
+    width: 120px;
+    height: 40px;
+  }
+  .gameDogPhoto {
+    height: 48px;
+  }
+}
+
+@media (max-width: 645px) {
+  .singleGameDiv {
+    width: 100px;
+  }
+  .gameImg {
+    height: 100px;
+    width: 100px;
+  }
+  .gameTitle {
+    font-size: 14px;
+  }
+  .votes {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 550px) {
+  #gameVote {
+    width: 75vw;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 374px) {
+  #gameVote {
+    gap: 10px;
+  }
+  .singleGameDiv {
+    width: 85px;
+  }
+  .gameImg {
+    height: 85px;
+    width: 85px;
+  }
+  .gameTitle {
+    font-size: 13px;
+  }
+  .votes {
+    font-size: 11px;
+  }
 }
