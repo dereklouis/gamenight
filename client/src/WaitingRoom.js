@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-const WaitingRoom = () => {
+const WaitingRoom = (props) => {
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   return (
     <div id="waitingRoomContainer" className="flexColumn">
       <img
@@ -12,15 +11,15 @@ const WaitingRoom = () => {
         id="waitingRoomSign"
       />
       <div id="waitingAreaContainer">
-        {arr.map((chair) => {
-          if (chair < 9) {
+        {arr.map((idx) => {
+          if (props.fetchedUsers[idx]) {
             return (
-              <div key={chair} className="waitingRoomChairContainer">
-                <h3 className="waitingRoomName">Name</h3>
+              <div key={idx} className="waitingRoomChairContainer">
+                <h3 className="waitingRoomName">
+                  {props.fetchedUsers[idx].name}
+                </h3>
                 <img
-                  src={`/waitingRoom/dog${
-                    Math.floor(Math.random() * 12) + 1
-                  }.png`}
+                  src={`/waitingRoom/dog${props.fetchedUsers[idx].photoID}.png`}
                   alt="dog"
                   className="waitingRoomSeatPhoto"
                 />
@@ -28,7 +27,7 @@ const WaitingRoom = () => {
             );
           } else {
             return (
-              <div key={chair} className="waitingRoomChairContainer">
+              <div key={idx} className="waitingRoomChairContainer">
                 <img
                   src="/waitingRoom/empty.png"
                   alt="dog"

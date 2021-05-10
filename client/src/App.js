@@ -16,6 +16,8 @@ function App() {
 
   const [adminAccess, updateAdminAccess] = useState(false);
 
+  const [fetchedUsers, updateFetchedUsers] = useState([]);
+
   if (!gameStatus && window.fetchGameData) {
     clearInterval(window.fetchGameData);
     window.fetchGameData = undefined;
@@ -28,15 +30,27 @@ function App() {
     }
   };
 
+  const loadData = async () => {
+    const data = await getUserFromDb();
+    updateAttending(data.attending);
+    const keysFromDb = await axios.get('/api/keys');
+    updateGameStatus(keysFromDb.data.gameActive);
+    const fetchUsers = await axios.get('/api/users');
+    const sortedAttendingUsers = fetchUsers.data
+      .filter((user) => user.attending === 'yes')
+      .sort(function (a, b) {
+        let nameA = a.name.toLowerCase(),
+          nameB = b.name.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+    updateFetchedUsers(sortedAttendingUsers);
+  };
+
   useEffect(() => {
     if (userNameLS) {
-      const mountFromDb = async () => {
-        const data = await getUserFromDb();
-        updateAttending(data.attending);
-        const keysFromDb = await axios.get('/api/keys');
-        updateGameStatus(keysFromDb.data.gameActive);
-      };
-      mountFromDb();
+      loadData();
     }
   }, []);
 
@@ -68,6 +82,17 @@ function App() {
       window.checkForRoomOpen = setInterval(async () => {
         const fetch = await axios.get('/api/keys');
         const currentStatus = fetch.data.gameActive;
+        const fetchUsers = await axios.get('/api/users');
+        const sortedAttendingUsers = fetchUsers.data
+          .filter((user) => user.attending === 'yes')
+          .sort(function (a, b) {
+            let nameA = a.name.toLowerCase(),
+              nameB = b.name.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        updateFetchedUsers(sortedAttendingUsers);
         console.log('Checking to see if room has opened...');
         if (currentStatus) {
           updateGameStatus(currentStatus);
@@ -126,6 +151,7 @@ function App() {
               updateAttending={updateAttending}
               userNameLS={userNameLS}
               getUserFromDb={getUserFromDb}
+              loadData={loadData}
             />
           )}
           {attending === 'no' && <h3>See you next time!</h3>}
@@ -135,7 +161,7 @@ function App() {
                 <h2 id="waitingLabel">Waiting for host to open the room</h2>
                 <div className="dot-flashing"></div>
               </div>
-              <WaitingRoom />
+              <WaitingRoom fetchedUsers={fetchedUsers} />
             </>
           )}
           {attending === 'yes' && gameStatus && (

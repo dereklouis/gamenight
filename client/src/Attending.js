@@ -7,6 +7,7 @@ const Attending = (props) => {
       answer: response,
     });
     props.updateAttending(response);
+    props.loadData();
   };
   return (
     <>
