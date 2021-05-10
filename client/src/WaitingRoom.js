@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import './styles/WaitingRoom.css';
 
 const WaitingRoom = (props) => {
   const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];

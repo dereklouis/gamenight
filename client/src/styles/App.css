@@ -1,0 +1,125 @@
+/* font-family: 'Lobster', cursive;
+font-family: 'Press Start 2P', cursive;
+font-family: 'Quicksand', sans-serif; */
+
+#App {
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#title {
+  font-family: 'Press Start 2P', cursive;
+  margin: 50px 0px 15px 0px;
+  font-size: 42px;
+  animation-name: blink;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  color: black;
+}
+
+#tag {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+}
+
+#hello {
+  margin: 40px 0px 10px 0px;
+  font-size: 26px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  letter-spacing: 3px;
+}
+
+@keyframes emphasize {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.emphasize {
+  animation-name: emphasize;
+  animation-duration: 0.2s;
+}
+
+#waitingDiv {
+  margin: 50px 0px 0px 0px;
+  display: flex;
+  align-items: flex-end;
+}
+
+#waitingLabel {
+  font-weight: 400;
+  margin: 0px 25px 0px 0px;
+}
+
+.dot-flashing {
+  position: relative;
+  width: 4px;
+  height: 4px;
+  margin: 0px 0px 5px 0px;
+  border-radius: 5px;
+  background-color: #000;
+  color: #000;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  height: 4px;
+  width: 4px;
+  border-radius: 5px;
+  background-color: #000;
+  color: #000;
+  animation: dotFlashing 1s infinite alternate;
+}
+
+.dot-flashing::before {
+  left: -13px;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 13px;
+  animation-delay: 1s;
+}
+
+@keyframes dotFlashing {
+  0% {
+    background-color: #000;
+  }
+  50%,
+  100% {
+    background-color: #00000023;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles/AdminAccessPanel.css';
 
 const AdminAccessPanel = (props) => {
   const [gameKeys, updateGameKeys] = useState({});
@@ -61,7 +62,7 @@ const AdminAccessPanel = (props) => {
 
   return (
     <div id="aAPContainer" className="flexColumn">
-      <h1>Admin Access Panel</h1>
+      <h1 style={{ margin: '22px 0px 40px 0px' }}>Admin Access Panel</h1>
       <div className="panelRow">
         <input
           type="text"

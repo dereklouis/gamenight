@@ -4,10 +4,35 @@ body {
   height: 100%;
 }
 
+h1 {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .backGroundPhoto {
   background: url('arcade.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+hr {
+  width: 95%;
+  color: black;
+  border: 1px solid black;
+}
+
+button {
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition-duration: 1s;
 }

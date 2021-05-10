@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import './styles/App.css';
 import axios from 'axios';
 import Welcome from './Welcome';
 import Attending from './Attending';

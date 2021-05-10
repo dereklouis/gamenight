@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import axios from 'axios';
+import './styles/Welcome.css';
 
 const Welcome = () => {
   const nameSubmit = async (e) => {

@@ -1,0 +1,28 @@
+#attending {
+  font-size: 19px;
+}
+
+#yesno {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0px 0px 0px;
+}
+
+#yes {
+  background-color: rgb(189, 232, 158);
+}
+
+#yes:hover {
+  background-color: rgb(141, 218, 86);
+  transform: scale(1.05);
+}
+
+#no {
+  background-color: rgb(235, 176, 176);
+}
+
+#no:hover {
+  background-color: rgb(221, 100, 100);
+  transform: scale(1.05);
+}
