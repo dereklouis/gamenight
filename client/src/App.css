@@ -224,12 +224,10 @@ button {
 #alignmentWrapper {
   margin: 0px auto;
   align-self: flex-start;
-  /* background-color: rgba(143, 0, 0, 0.446); */
   align-items: flex-end;
 }
 
 .namePhotoWrapper {
-  /* background-color: rgba(141, 218, 86, 0.405); */
   display: flex;
   justify-content: center;
   align-items: center;
