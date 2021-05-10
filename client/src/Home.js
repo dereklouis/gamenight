@@ -164,11 +164,20 @@ const Home = () => {
       </div>
       <div id="attendanceList" className="flexColumn">
         <h2>{usersAttending.length} Players Tonight:</h2>
-        {usersAttending.map((user) => (
-          <div id="nameContainer" key={user.name}>
-            <p id="listName">{user.name}</p>
-          </div>
-        ))}
+        <div id="alignmentWrapper" className="flexColumn">
+          {usersAttending.map((user) => (
+            <div className="namePhotoWrapper">
+              <img
+                src={`/gameDogs/gameDog${user.photoID}.png`}
+                alt="gameDog"
+                className="gameDogPhoto"
+              />
+              <div className="nameContainer" key={user.name}>
+                <p className="listName">{user.name}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
