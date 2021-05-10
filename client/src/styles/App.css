@@ -44,11 +44,12 @@ font-family: 'Quicksand', sans-serif; */
 }
 
 #hello {
-  margin: 40px 0px 10px 0px;
+  margin: 40px 10px 10px 10px;
   font-size: 26px;
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 @keyframes emphasize {
@@ -163,5 +164,14 @@ font-family: 'Quicksand', sans-serif; */
   }
   #waitingLabel {
     margin: 0px 15px 0px 0px;
+  }
+}
+
+@media (max-width: 330px) {
+  #title {
+    font-size: 25px;
+  }
+  #tag {
+    font-size: 12px;
   }
 }
