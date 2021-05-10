@@ -57,6 +57,10 @@ router.patch('/reset', async (req, res, next) => {
         'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
       roomCode: null,
       gameActive: false,
+      availablePhotoIDs: [],
+    });
+    await keys.update({
+      availablePhotoIDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     });
     res.sendStatus(202);
   } catch (error) {

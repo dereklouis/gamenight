@@ -19,6 +19,7 @@ const User = db.define('user', {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     defaultValue: [],
   },
+  photoID: Sequelize.INTEGER,
 });
 
 module.exports = User;

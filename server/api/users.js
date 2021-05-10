@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../db/models');
+const { User, Key } = require('../db/models');
 module.exports = router;
 
 const getUser = async (reqName) => {
@@ -24,9 +24,20 @@ router.get('/', async (req, res, next) => {
 //update attending status for user
 router.put('/attending/:userName', async (req, res, next) => {
   try {
+    const gameKey = await Key.findByPk(1);
+    const photoIDsAvailable = gameKey.dataValues.availablePhotoIDs;
+    const randomID = Math.ceil(Math.random() * photoIDsAvailable.length) - 1;
     const user = await getUser(req.params.userName);
     await user.update({
       attending: req.body.answer,
+      photoID: photoIDsAvailable[randomID],
+    });
+    photoIDsAvailable.splice(randomID, 1);
+    await gameKey.update({
+      availablePhotoIDs: [],
+    });
+    await gameKey.update({
+      availablePhotoIDs: photoIDsAvailable,
     });
     res.send(req.body.answer);
   } catch (error) {
@@ -92,6 +103,7 @@ router.patch('/reset', async (req, res, next) => {
         attending: 'n/a',
         votesRemaining: 3,
         votedFor: [],
+        photoID: null,
       })
     );
     res.sendStatus(202);
