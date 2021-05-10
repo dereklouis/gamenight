@@ -19,7 +19,7 @@ const WaitingRoom = (props) => {
                   {props.fetchedUsers[idx].name}
                 </h3>
                 <img
-                  src={`/waitingRoom/dog${props.fetchedUsers[idx].photoID}.png`}
+                  src={`/waitingRoom/waitingDog${props.fetchedUsers[idx].photoID}.png`}
                   alt="dog"
                   className="waitingRoomSeatPhoto"
                 />
