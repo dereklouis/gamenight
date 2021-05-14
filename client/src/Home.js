@@ -153,21 +153,21 @@ const Home = () => {
               id={game.path}
               onClick={handleVote}
             >
-              {votingResults[0] === game.name && (
+              {votingResults[0].includes(game.name) && (
                 <img
                   src="/firstPlace.png"
                   alt="First Place"
                   className="medal"
                 />
               )}
-              {votingResults[1] === game.name && (
+              {votingResults[1].includes(game.name) && (
                 <img
                   src="/secondPlace.png"
                   alt="Second Place"
                   className="medal"
                 />
               )}
-              {votingResults[2] === game.name && (
+              {votingResults[2].includes(game.name) && (
                 <img
                   src="/thirdPlace.png"
                   alt="Third Place"

@@ -21,27 +21,34 @@ const calculateVotingPlaces = (gameData) => {
     const places = Object.keys(gameVotes).sort((a, b) => b - a);
 
     if (places[0]) {
-      if (gameVotes[places[0]].gameCount === 1) {
-        finalResults[0] = gameVotes[places[0]].gameNames[0];
-      } else if (gameVotes[places[0]].gameCount > 1) {
-        finalResults[0] = 'Tie Vote';
-      }
+      finalResults[0] = gameVotes[places[0]].gameNames;
+      // Old method for dealing with tie votes:
+      // if (gameVotes[places[0]].gameCount === 1) {
+      //   finalResults[0] = gameVotes[places[0]].gameNames[0];
+      // }
+      // else if (gameVotes[places[0]].gameCount > 1) {
+      //   finalResults[0] = 'Tie Vote';
+      // }
     }
 
     if (places[1]) {
-      if (gameVotes[places[1]].gameCount === 1) {
-        finalResults[1] = gameVotes[places[1]].gameNames[0];
-      } else if (gameVotes[places[1]].gameCount > 1) {
-        finalResults[1] = 'Tie Vote';
-      }
+      finalResults[1] = gameVotes[places[1]].gameNames;
+      // Old method for dealing with tie votes:
+      // if (gameVotes[places[1]].gameCount === 1) {
+      //   finalResults[1] = gameVotes[places[1]].gameNames[0];
+      // } else if (gameVotes[places[1]].gameCount > 1) {
+      //   finalResults[1] = 'Tie Vote';
+      // }
     }
 
     if (places[2]) {
-      if (gameVotes[places[2]].gameCount === 1) {
-        finalResults[2] = gameVotes[places[2]].gameNames[0];
-      } else if (gameVotes[places[2]].gameCount > 1) {
-        finalResults[2] = 'Tie Vote';
-      }
+      finalResults[2] = gameVotes[places[2]].gameNames;
+      // Old method for dealing with tie votes:
+      // if (gameVotes[places[2]].gameCount === 1) {
+      //   finalResults[2] = gameVotes[places[2]].gameNames[0];
+      // } else if (gameVotes[places[2]].gameCount > 1) {
+      //   finalResults[2] = 'Tie Vote';
+      // }
     }
   }
   return finalResults;
