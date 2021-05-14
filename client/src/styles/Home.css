@@ -133,6 +133,13 @@
   color: black;
 }
 
+.medal {
+  position: absolute;
+  width: 36px;
+  height: auto;
+  transform: translate(78px, -32px);
+}
+
 @media (max-width: 700px) {
   .nameContainer {
     width: 120px;
@@ -156,6 +163,11 @@
   }
   .votes {
     font-size: 12px;
+  }
+  .medal {
+    width: 30px;
+    height: auto;
+    transform: translate(64px, -28px);
   }
 }
 
@@ -182,5 +194,10 @@
   }
   .votes {
     font-size: 11px;
+  }
+  .medal {
+    width: 25px;
+    height: auto;
+    transform: translate(57px, -26px);
   }
 }

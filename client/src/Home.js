@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import calculateVotingPlaces from './calculateVotingPlaces';
 import './styles/Home.css';
 
 const Home = () => {
@@ -111,6 +112,8 @@ const Home = () => {
     }
   };
 
+  const votingResults = calculateVotingPlaces(gameData);
+
   return (
     <>
       <div id="zoomDiv" className="flexColumn">
@@ -150,6 +153,27 @@ const Home = () => {
               id={game.path}
               onClick={handleVote}
             >
+              {votingResults[0] === game.name && (
+                <img
+                  src="/firstPlace.png"
+                  alt="First Place"
+                  className="medal"
+                />
+              )}
+              {votingResults[1] === game.name && (
+                <img
+                  src="/secondPlace.png"
+                  alt="Second Place"
+                  className="medal"
+                />
+              )}
+              {votingResults[2] === game.name && (
+                <img
+                  src="/thirdPlace.png"
+                  alt="Third Place"
+                  className="medal"
+                />
+              )}
               <div className="gameTitleContainer">
                 <h5 className="gameTitle">{game.name}</h5>
               </div>
