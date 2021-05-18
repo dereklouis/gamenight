@@ -53,7 +53,6 @@ function App(props) {
   };
 
   useEffect(() => {
-    console.log('use effect');
     props.socket.on('DB-Refresh', function (data) {
       loadData();
     });
@@ -89,8 +88,6 @@ function App(props) {
       updateAdminAccess(!adminAccess);
     }
   };
-
-  console.log('render');
 
   return (
     <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>

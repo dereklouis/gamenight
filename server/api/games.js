@@ -41,7 +41,6 @@ router.put('/:gameName', async (req, res, next) => {
 //get all games
 router.patch('/reset', async (req, res, next) => {
   try {
-    console.log('game reset route hit!');
     const allGames = await Game.findAll();
     await allGames.forEach((game) =>
       game.update({
