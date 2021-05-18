@@ -6,6 +6,15 @@ import { io } from 'socket.io-client';
 
 const socket = io.connect(window.location.origin);
 
+if (window.location.host === 'game--night.herokuapp.com') {
+  if (
+    window.location.protocol === 'http' ||
+    window.location.protocol === 'http:'
+  ) {
+    window.location.protocol = 'https';
+  }
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App socket={socket} />
