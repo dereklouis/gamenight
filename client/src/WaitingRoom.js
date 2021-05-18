@@ -4,11 +4,6 @@ const WaitingRoom = (props) => {
   const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   return (
     <div id="waitingRoomContainer" className="flexColumn">
-      <img
-        src="/waitingRoom/waitingRoomSign.png"
-        alt="waiting room sign"
-        id="waitingRoomSign"
-      />
       <div id="waitingAreaContainer">
         {arr.map((idx) => {
           if (props.fetchedUsers[idx]) {

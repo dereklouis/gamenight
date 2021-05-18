@@ -92,19 +92,23 @@ const Home = (props) => {
       <div id="zoomDiv" className="flexColumn">
         <div className="flexColumn">
           <p id="zoom">Zoom Link:</p>
-          <a
-            target="blank"
-            href={gameKeys.link || 'https://zoom.us/'}
-            id="link"
-          >
-            {gameKeys.link || 'loading...'}
-          </a>
+          <div id="zoomLinkContainer">
+            <a
+              target="blank"
+              href={gameKeys.link || 'https://zoom.us/'}
+              id="link"
+            >
+              {gameKeys.link || 'loading...'}
+            </a>
+          </div>
         </div>
       </div>
       {gameKeys.roomCode && (
         <div className="flexColumn">
           <p id="roomCodeTitle">Room Code:</p>
-          <p id="roomCode">{gameKeys.roomCode}</p>
+          <div id="roomCodeContainer">
+            <p id="roomCode">{gameKeys.roomCode}</p>
+          </div>
         </div>
       )}
       <h3 id="instruction">Vote for what game you want to play!</h3>

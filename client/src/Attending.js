@@ -12,7 +12,9 @@ const Attending = (props) => {
   };
   return (
     <>
-      <p id="attending">Will you be attending Game Night tonight?</p>
+      <div id="attendingContainer">
+        <p id="attending">Will you be attending Game Night tonight?</p>
+      </div>
       <div id="yesno">
         <button id="yes" onClick={() => setAttending('yes')}>
           YES

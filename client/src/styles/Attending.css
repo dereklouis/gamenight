@@ -1,7 +1,15 @@
 #attending {
   font-size: 19px;
   text-align: center;
+  margin: 0px;
+  color: white;
+}
+
+#attendingContainer {
+  background-color: rgba(0, 0, 0, 0.647);
   margin: 36px 10px 19px 10px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 #yesno {
@@ -12,13 +20,12 @@
 }
 
 #yes {
-  background-color: rgb(189, 232, 158);
-  padding: 15px 55px;
-  border: 2px solid rgb(141, 218, 86);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #09fbd3f0;
+  padding: 9px 50px;
+  margin: 25px 0px 100px 0px;
 }
 
 #yes:hover {
-  background-color: rgb(141, 218, 86);
   transform: scale(1.05);
+  background-color: #09fbd3;
 }

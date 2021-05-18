@@ -2,6 +2,7 @@ html,
 body {
   margin: 0px;
   height: 100%;
+  outline: none;
 }
 
 h1 {
@@ -24,8 +25,8 @@ h1 {
 
 hr {
   width: 95%;
-  color: black;
-  border: 1px solid black;
+  color: white;
+  border: 1px solid white;
 }
 
 button {
@@ -35,4 +36,20 @@ button {
   padding: 10px 25px;
   cursor: pointer;
   transition-duration: 1s;
+}
+
+.blue {
+  color: #08f7fe;
+}
+
+.green {
+  color: #09fbd3;
+}
+
+.pink {
+  color: #f353bb;
+}
+
+.yellow {
+  color: #f5d300;
 }

@@ -5,21 +5,43 @@
 #zoom {
   margin: 15px 0px 15px 0px;
   font-size: 22px;
+  color: white;
 }
 
 #link {
   font-size: 18px;
   color: rgb(73, 167, 255);
   text-align: center;
+  margin: 0px;
+}
+
+#zoomLinkContainer {
   margin: 0px 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 5px 15px;
+  border-radius: 7px;
+  border: 2px solid #f5d300;
+  display: flex;
+  justify-content: center;
 }
 
 #roomCodeTitle {
   font-size: 20px;
+  color: white;
 }
 
 #roomCode {
   margin: 0px;
+  color: black;
+}
+
+#roomCodeContainer {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 5px 15px;
+  border-radius: 7px;
+  border: 2px solid #09fbd3;
+  display: flex;
+  justify-content: center;
 }
 
 #instruction {
@@ -27,14 +49,17 @@
   font-weight: 450;
   margin: 22px 10px 11px 10px;
   text-align: center;
+  color: white;
 }
 
 #voteCount {
   margin: 16px 0px 25px 0px;
+  color: white;
 }
 
 #gameVote {
-  background-color: rgba(106, 106, 106, 0.166);
+  /* background-color: rgba(255, 255, 255, 0.503); */
+  background-color: transparent;
   width: 80vw;
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +69,7 @@
   border-radius: 15px;
   margin: 0px 0px 36px 0px;
   max-width: 1050px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 
 .singleGameDiv {
@@ -82,7 +107,7 @@
 }
 
 #attendanceList {
-  background-color: rgba(181, 181, 181, 0.296);
+  background-color: rgba(255, 255, 255, 0.77);
   border-radius: 15px;
   width: 40vw;
   margin: 0px 0px 50px 0px;

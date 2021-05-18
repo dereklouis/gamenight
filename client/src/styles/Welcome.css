@@ -7,7 +7,7 @@
 
 #enterUserName {
   border-radius: 15px;
-  border: 2px solid #f4d35e;
+  border: 2px solid #f5d300;
   padding: 10px 25px;
   margin: 0px 0px 36px 0px;
   text-align: center;
@@ -16,12 +16,11 @@
 }
 
 #nameSubmit {
-  background-color: #f4d35e;
-  border: 2px solid #f4c006;
+  background-color: #f5d400f0;
   padding: 9px 50px;
 }
 
 #nameSubmit:hover {
-  background-color: #f4c006;
+  background-color: #f5d300;
   transform: scale(1.05);
 }

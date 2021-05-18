@@ -91,12 +91,23 @@ function App(props) {
 
   return (
     <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>
-      <h1 id="title">Game Night</h1>
+      <h1 id="title">
+        <span className="blue">G</span>
+        <span className="green">a</span>
+        <span className="pink">m</span>
+        <span className="yellow">e</span> <span className="blue">N</span>
+        <span className="green">i</span>
+        <span className="pink">g</span>
+        <span className="yellow">h</span>
+        <span className="blue">t</span>
+      </h1>
       <h2 id="tag">Monday Nights, 7:30 EST</h2>
       <hr />
       {userNameLS ? (
         <div className="flexColumn">
-          <h3 id="hello">Hello {userNameLS}!</h3>
+          <div id="nameContainer">
+            <h3 id="hello">Hello {userNameLS}!</h3>
+          </div>
           {attending === 'n/a' && (
             <Attending
               attending={attending}
