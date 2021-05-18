@@ -50,7 +50,6 @@ function App(props) {
 
   useEffect(() => {
     props.socket.on('DB-Refresh', function (data) {
-      console.log('$$$$', data);
       loadData();
     });
     if (userNameLS) {

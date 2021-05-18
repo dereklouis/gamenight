@@ -12,7 +12,6 @@ const AdminAccessPanel = (props) => {
     };
     fetch();
     props.socket.on('DB-Refresh', function (data) {
-      console.log('$$$$', data);
       fetch();
     });
   }, []);

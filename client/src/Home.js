@@ -49,7 +49,6 @@ const Home = (props) => {
   useEffect(() => {
     loadGameData();
     props.socket.on('DB-Refresh', function (data) {
-      console.log('$$$$', data);
       loadGameData();
     });
   }, []);
