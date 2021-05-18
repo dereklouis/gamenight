@@ -27,35 +27,49 @@ function App(props) {
     if (userNameLS) {
       const user = await axios.get(`/api/users/${userNameLS}`);
       return user.data;
+    } else {
+      return 'n/a';
     }
   };
 
   const loadData = async () => {
     const data = await getUserFromDb();
-    updateAttending(data.attending);
-    const keysFromDb = await axios.get('/api/keys');
-    updateGameStatus(keysFromDb.data.gameActive);
-    const fetchUsers = await axios.get('/api/users');
-    const sortedAttendingUsers = fetchUsers.data
-      .filter((user) => user.attending === 'yes')
-      .sort(function (a, b) {
-        let nameA = a.name.toLowerCase(),
-          nameB = b.name.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-    updateFetchedUsers(sortedAttendingUsers);
+    if (data !== 'n/a') {
+      updateAttending(data.attending);
+      const keysFromDb = await axios.get('/api/keys');
+      updateGameStatus(keysFromDb.data.gameActive);
+      const fetchUsers = await axios.get('/api/users');
+      const sortedAttendingUsers = fetchUsers.data
+        .filter((user) => user.attending === 'yes')
+        .sort(function (a, b) {
+          let nameA = a.name.toLowerCase(),
+            nameB = b.name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+      updateFetchedUsers(sortedAttendingUsers);
+    }
   };
 
   useEffect(() => {
+    console.log('use effect');
     props.socket.on('DB-Refresh', function (data) {
       loadData();
     });
     if (userNameLS) {
       loadData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (adminAccess) {
+      window.scrollTo(0, document.body.scrollHeight);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [adminAccess]);
 
   let keyListenerObj = {
     Control: false,
@@ -75,6 +89,8 @@ function App(props) {
       updateAdminAccess(!adminAccess);
     }
   };
+
+  console.log('render');
 
   return (
     <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>
