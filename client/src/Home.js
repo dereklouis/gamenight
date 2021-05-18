@@ -51,6 +51,7 @@ const Home = (props) => {
     props.socket.on('DB-Refresh', function (data) {
       loadGameData();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleVote = async (e) => {

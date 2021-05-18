@@ -14,6 +14,7 @@ const AdminAccessPanel = (props) => {
     props.socket.on('DB-Refresh', function (data) {
       fetch();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sendLink = async () => {
