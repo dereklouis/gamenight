@@ -11,6 +11,10 @@ const AdminAccessPanel = (props) => {
       updateGameKeys(fetchKeys.data);
     };
     fetch();
+    props.socket.on('DB-Refresh', function (data) {
+      console.log('$$$$', data);
+      fetch();
+    });
   }, []);
 
   const sendLink = async () => {
@@ -19,6 +23,7 @@ const AdminAccessPanel = (props) => {
       link: zoomLink.value,
     });
     zoomLink.value = '';
+    props.socket.emit('DB-Update');
   };
 
   const sendRoomCode = async () => {
@@ -27,14 +32,12 @@ const AdminAccessPanel = (props) => {
       roomCode: roomCode.value,
     });
     roomCode.value = '';
+    props.socket.emit('DB-Update');
   };
 
   const toggleStatus = async () => {
-    const newStatus = await axios.put('/api/keys/gamestatus');
-    let stateCopy = { ...gameKeys };
-    stateCopy.gameActive = newStatus.data;
-    updateGameKeys(stateCopy);
-    props.updateGameStatus(newStatus.data);
+    await axios.put('/api/keys/gamestatus');
+    props.socket.emit('DB-Update');
   };
 
   const reset = async () => {
@@ -58,6 +61,7 @@ const AdminAccessPanel = (props) => {
     const fetchKeys = await axios.get('/api/keys');
     updateGameKeys(fetchKeys.data);
     console.log('Game Night has been reset!');
+    props.socket.emit('DB-Update');
   };
 
   return (

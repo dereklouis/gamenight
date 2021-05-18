@@ -8,6 +8,7 @@ const Attending = (props) => {
     });
     props.updateAttending(response);
     props.loadData();
+    props.socket.emit('DB-Update');
   };
   return (
     <>

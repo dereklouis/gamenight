@@ -2,11 +2,10 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const db = require('./server/db');
-// const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
 const app = express();
-// const { User, Game } = require('./server/db/models');
-// require('dotenv').config();
+const options = {};
+const io = require('socket.io', options);
 module.exports = app;
 
 app.use(morgan('dev'));
@@ -36,12 +35,21 @@ app.use((err, req, res, next) => {
 });
 
 const startListening = () => {
-  app.listen(PORT, () =>
+  const server = app.listen(PORT, () =>
     console.log(
       `Gamenight is listening on port ${PORT}`,
       `http://localhost:${PORT}`
     )
   );
+  const socket = io(server);
+  socket.on('connection', function (socketArg) {
+    console.log('socket CONNECT', socketArg.id);
+
+    socketArg.on('DB-Update', function (data) {
+      console.log('DB UPDATED');
+      socket.sockets.emit('DB-Refresh', 'DB Refresh Activated');
+    });
+  });
 };
 
 const syncDb = () => db.sync();

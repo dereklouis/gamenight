@@ -3,7 +3,7 @@ import axios from 'axios';
 import calculateVotingPlaces from './calculateVotingPlaces';
 import './styles/Home.css';
 
-const Home = () => {
+const Home = (props) => {
   const userNameLS = localStorage.getItem('userNameLS');
 
   const [gameData, updateGameData] = useState(['initial state']);
@@ -48,59 +48,31 @@ const Home = () => {
 
   useEffect(() => {
     loadGameData();
-    if (window.fetchGameData === undefined) {
-      window.fetchGameData = setInterval(() => {
-        console.log('Fetching game data...');
-        loadGameData();
-      }, 7000);
-    }
+    props.socket.on('DB-Refresh', function (data) {
+      console.log('$$$$', data);
+      loadGameData();
+    });
   }, []);
 
   const handleVote = async (e) => {
     if (votedGames.includes(e.currentTarget.id)) {
       let gameName = e.currentTarget.id;
-      const votedGamesFromDB = await axios.put(
-        `/api/users/vote/${userNameLS}`,
-        {
-          vote: '-',
-          game: gameName,
-        }
-      );
-      voteForAGame(votedGamesFromDB.data);
-      updateVoteCount(votesRemaining + 1);
-      const gameData = await axios.put(`/api/games/${gameName}`, {
+      await axios.put(`/api/users/vote/${userNameLS}`, {
+        vote: '-',
+        game: gameName,
+      });
+      await axios.put(`/api/games/${gameName}`, {
         vote: '-',
       });
-      const sortedGameData = gameData.data.sort(function (a, b) {
-        let nameA = a.name.toLowerCase(),
-          nameB = b.name.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-      updateGameData(sortedGameData);
     } else if (votesRemaining > 0 && !votedGames.includes(e.currentTarget.id)) {
       let gameName = e.currentTarget.id;
-      const votedGamesFromDB = await axios.put(
-        `/api/users/vote/${userNameLS}`,
-        {
-          vote: '+',
-          game: gameName,
-        }
-      );
-      voteForAGame(votedGamesFromDB.data);
-      updateVoteCount(votesRemaining - 1);
-      const gameData = await axios.put(`/api/games/${gameName}`, {
+      await axios.put(`/api/users/vote/${userNameLS}`, {
+        vote: '+',
+        game: gameName,
+      });
+      await axios.put(`/api/games/${gameName}`, {
         vote: '+',
       });
-      const sortedGameData = gameData.data.sort(function (a, b) {
-        let nameA = a.name.toLowerCase(),
-          nameB = b.name.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-      updateGameData(sortedGameData);
     } else if (
       votesRemaining <= 0 &&
       !votedGames.includes(e.currentTarget.id)
@@ -110,6 +82,7 @@ const Home = () => {
       void voteDisplay.offsetWidth;
       voteDisplay.className = 'emphasize';
     }
+    props.socket.emit('DB-Update');
   };
 
   const votingResults = calculateVotingPlaces(gameData);

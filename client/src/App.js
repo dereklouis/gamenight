@@ -7,7 +7,7 @@ import WaitingRoom from './WaitingRoom';
 import Home from './Home';
 import AdminAccessPanel from './AdminAccessPanel';
 
-function App() {
+function App(props) {
   const userNameLS = localStorage.getItem('userNameLS');
 
   const [attending, updateAttending] = useState('n/a');
@@ -49,6 +49,10 @@ function App() {
   };
 
   useEffect(() => {
+    props.socket.on('DB-Refresh', function (data) {
+      console.log('$$$$', data);
+      loadData();
+    });
     if (userNameLS) {
       loadData();
     }
@@ -73,70 +77,6 @@ function App() {
     }
   };
 
-  const checkForStatusTrue = async () => {
-    if (
-      attending === 'yes' &&
-      !gameStatus &&
-      window.checkForRoomOpen === undefined
-    ) {
-      window.checkForRoomOpen = setInterval(async () => {
-        const fetch = await axios.get('/api/keys');
-        const currentStatus = fetch.data.gameActive;
-        const fetchUsers = await axios.get('/api/users');
-        const sortedAttendingUsers = fetchUsers.data
-          .filter((user) => user.attending === 'yes')
-          .sort(function (a, b) {
-            let nameA = a.name.toLowerCase(),
-              nameB = b.name.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-        updateFetchedUsers(sortedAttendingUsers);
-        console.log('Checking to see if room has opened...');
-        if (currentStatus) {
-          updateGameStatus(currentStatus);
-        }
-      }, 5000);
-    } else if (attending === 'yes' && gameStatus && window.checkForRoomOpen) {
-      clearInterval(window.checkForRoomOpen);
-      window.checkForRoomOpen = undefined;
-    }
-  };
-
-  const checkIfGameHasEnded = async () => {
-    if (userNameLS) {
-      if (
-        attending === 'yes' &&
-        gameStatus &&
-        window.checkForRoomClose === undefined
-      ) {
-        window.checkForRoomClose = setInterval(async () => {
-          const fetch = await axios.get('/api/keys');
-          const data = await getUserFromDb();
-          const currentStatus = fetch.data.gameActive;
-          console.log('Checking to see if room has closed...');
-          if (!currentStatus && data.attending === 'n/a') {
-            updateAttending(data.attending);
-            updateGameStatus(currentStatus);
-          } else if (!currentStatus) {
-            updateGameStatus(currentStatus);
-          }
-        }, 30000);
-      } else if (
-        attending === 'n/a' &&
-        !gameStatus &&
-        window.checkForRoomClose
-      ) {
-        clearInterval(window.checkForRoomClose);
-        window.checkForRoomClose = undefined;
-      }
-    }
-  };
-
-  checkForStatusTrue();
-  checkIfGameHasEnded();
-
   return (
     <div id="App" tabIndex="0" onKeyDown={keyListener} onKeyUp={keyListener}>
       <h1 id="title">Game Night</h1>
@@ -152,6 +92,7 @@ function App() {
               userNameLS={userNameLS}
               getUserFromDb={getUserFromDb}
               loadData={loadData}
+              socket={props.socket}
             />
           )}
           {attending === 'no' && <h3>See you next time!</h3>}
@@ -161,12 +102,12 @@ function App() {
                 <h2 id="waitingLabel">Waiting for host to open the room</h2>
                 <div className="dot-flashing"></div>
               </div>
-              <WaitingRoom fetchedUsers={fetchedUsers} />
+              <WaitingRoom fetchedUsers={fetchedUsers} socket={props.socket} />
             </>
           )}
           {attending === 'yes' && gameStatus && (
             <>
-              <Home getUserFromDb={getUserFromDb} />
+              <Home getUserFromDb={getUserFromDb} socket={props.socket} />
             </>
           )}
         </div>
@@ -177,6 +118,7 @@ function App() {
         <AdminAccessPanel
           updateGameStatus={updateGameStatus}
           updateAttending={updateAttending}
+          socket={props.socket}
         />
       )}
     </div>
