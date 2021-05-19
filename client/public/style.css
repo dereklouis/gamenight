@@ -23,12 +23,6 @@ h1 {
   align-items: center;
 }
 
-hr {
-  width: 95%;
-  color: white;
-  border: 1px solid white;
-}
-
 button {
   border-radius: 15px;
   outline: none;

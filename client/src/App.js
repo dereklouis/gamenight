@@ -102,7 +102,7 @@ function App(props) {
         <span className="blue">t</span>
       </h1>
       <h2 id="tag">Monday Nights, 7:30 EST</h2>
-      <hr />
+      <div id="whiteLine"></div>
       {userNameLS ? (
         <div className="flexColumn">
           <div id="nameContainer">

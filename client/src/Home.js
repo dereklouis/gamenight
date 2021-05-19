@@ -165,7 +165,11 @@ const Home = (props) => {
           ))}
       </div>
       <div id="attendanceList" className="flexColumn">
-        <h2>{usersAttending.length} Players Tonight:</h2>
+        {usersAttending.length === 1 ? (
+          <h2 id="playersTonight">1 Player Tonight:</h2>
+        ) : (
+          <h2 id="playersTonight">{usersAttending.length} Players Tonight:</h2>
+        )}
         <div id="alignmentWrapper" className="flexColumn">
           {usersAttending.map((user) => (
             <div className="namePhotoWrapper" key={user.name}>

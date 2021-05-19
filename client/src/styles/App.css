@@ -125,6 +125,19 @@ font-family: 'Quicksand', sans-serif; */
   animation-delay: 1s;
 }
 
+#whiteLine {
+  width: 95%;
+  height: 1px;
+  background-color: white;
+  /* background-image: linear-gradient(
+    to right,
+    #08f7fe,
+    #09fbd3,
+    #f353bb,
+    #f5d300
+  ); */
+}
+
 @keyframes dotFlashing {
   0% {
     background-color: #fff;
