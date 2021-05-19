@@ -2,6 +2,8 @@
 font-family: 'Press Start 2P', cursive;
 font-family: 'Quicksand', sans-serif; */
 
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Orbitron&family=Quicksand&display=swap');
+
 #App {
   width: 100vw;
   max-width: 100%;
