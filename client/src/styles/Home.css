@@ -16,7 +16,6 @@
 }
 
 #zoomLinkContainer {
-  margin: 0px 15px;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 5px 15px;
   border-radius: 7px;
@@ -42,6 +41,7 @@
   border: 2px solid #09fbd3;
   display: flex;
   justify-content: center;
+  margin: 0px 36px;
 }
 
 #instruction {
@@ -64,7 +64,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 25px;
   padding: 25px;
   border-radius: 15px;
   margin: 0px 0px 36px 0px;
@@ -73,6 +72,7 @@
 
 .singleGameDiv {
   padding: 15px;
+  margin: 20px 15px;
   border-radius: 15px;
   cursor: pointer;
   transition-duration: 0.5s;
@@ -169,6 +169,12 @@
   transform: translate(78px, -32px);
 }
 
+@media (max-width: 800px) {
+  #zoomLinkContainer {
+    width: 75%;
+  }
+}
+
 @media (max-width: 700px) {
   .nameContainer {
     width: 120px;
@@ -203,16 +209,36 @@
 @media (max-width: 550px) {
   #gameVote {
     width: 75vw;
-    gap: 20px;
+  }
+  .singleGameDiv {
+    margin: 10px;
+  }
+}
+
+/* @media(max-width: 417px) {
+
+} */
+
+@media (max-width: 417px) {
+  #gameVote {
+    width: 75vw;
+  }
+  .singleGameDiv {
+    margin: 10px 0px;
+  }
+  #link {
+    font-size: 14px;
+  }
+  #gameVote {
+    width: 85vw;
+    padding: 25px 5px;
   }
 }
 
 @media (max-width: 374px) {
-  #gameVote {
-    gap: 10px;
-  }
   .singleGameDiv {
     width: 85px;
+    margin: 10px;
   }
   .gameImg {
     height: 85px;

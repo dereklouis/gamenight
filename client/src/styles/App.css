@@ -5,8 +5,7 @@ font-family: 'Quicksand', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Orbitron&family=Quicksand&display=swap');
 
 #App {
-  width: 100vw;
-  max-width: 100%;
+  width: 100%;
   min-height: 100vh;
   margin: 0px;
   display: flex;
