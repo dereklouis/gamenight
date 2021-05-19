@@ -16,7 +16,7 @@ const Attending = (props) => {
         <p id="attending">Will you be attending Game Night tonight?</p>
       </div>
       <div id="yesno">
-        <button id="yes" onClick={() => setAttending('yes')}>
+        <button id="yes" autoFocus onClick={() => setAttending('yes')}>
           YES
         </button>
       </div>

@@ -9,7 +9,12 @@ const Welcome = () => {
 
   return (
     <form id="nameForm" onSubmit={nameSubmit}>
-      <input type="text" id="enterUserName" placeholder="Enter your name..." />
+      <input
+        type="text"
+        id="enterUserName"
+        placeholder="Enter your name..."
+        autoFocus
+      />
       <button type="submit" id="nameSubmit">
         Go!
       </button>
