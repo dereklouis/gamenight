@@ -5,8 +5,10 @@
     "client": "cd client && npm start",
     "server": "nodemon index.js",
     "start": "node index.js",
+    "poststart": "node test.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "start-dev": "node index.js & cd client && npm start"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
