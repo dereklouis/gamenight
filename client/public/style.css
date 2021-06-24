@@ -10,6 +10,10 @@ body {
   width: 100%;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 h1 {
   font-family: 'Quicksand', sans-serif;
 }

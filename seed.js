@@ -47,6 +47,12 @@ const seedGames = async () => {
     });
     await Game.findOrCreate({
       where: {
+        name: 'Gartic Phone',
+        path: 'garticPhone',
+      },
+    });
+    await Game.findOrCreate({
+      where: {
         name: 'GeoGuessr',
         path: 'geoGuessr',
       },
@@ -78,8 +84,7 @@ const seedKeys = async () => {
     });
     const keyyy = await Key.findByPk(1);
     await keyyy.update({
-      link:
-        'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
+      link: 'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
     });
     console.log('Keys have been seeded to the DB!');
   } catch (error) {
