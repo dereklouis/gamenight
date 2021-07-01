@@ -53,8 +53,7 @@ router.patch('/reset', async (req, res, next) => {
   try {
     const keys = await Key.findByPk(1);
     await keys.update({
-      link:
-        'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
+      link: 'Waiting for Zoom link...',
       roomCode: null,
       gameActive: false,
       availablePhotoIDs: [],

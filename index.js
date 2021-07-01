@@ -57,6 +57,7 @@ const syncDb = () => db.sync();
 async function bootApp() {
   await syncDb();
   console.log('db synced');
+  require('./seed');
   await startListening();
 }
 

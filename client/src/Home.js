@@ -98,7 +98,7 @@ const Home = (props) => {
               href={gameKeys.link || 'https://zoom.us/'}
               id="link"
             >
-              {gameKeys.link || 'loading...'}
+              {gameKeys.link || 'Waiting for Zoom link...'}
             </a>
           </div>
         </div>

@@ -26,7 +26,12 @@ function App(props) {
   const getUserFromDb = async () => {
     if (userNameLS) {
       const user = await axios.get(`/api/users/${userNameLS}`);
-      return user.data;
+      if (user.data !== null) {
+        return user.data;
+      } else {
+        const userFromLS = await axios.put('/api/users', { name: userNameLS });
+        return userFromLS.data;
+      }
     } else {
       return 'n/a';
     }

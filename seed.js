@@ -82,10 +82,6 @@ const seedKeys = async () => {
         id: 1,
       },
     });
-    const keyyy = await Key.findByPk(1);
-    await keyyy.update({
-      link: 'https://us02web.zoom.us/j/EXAMPLE-TESTpwd=EXAMPLE-ZOOM-LINK-FOR-TESTING...',
-    });
     console.log('Keys have been seeded to the DB!');
   } catch (error) {
     console.error(error);

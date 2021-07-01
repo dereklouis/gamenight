@@ -88,7 +88,8 @@ router.put('/', async (req, res, next) => {
         name: userName,
       },
     });
-    res.send(`${userName} is in the database!`);
+    const userData = await getUser(userName);
+    res.json(userData);
   } catch (error) {
     next(error);
   }
